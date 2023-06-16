@@ -1,7 +1,6 @@
 package com.andrew.search.controller
 
 import com.andrew.search.domain.KeywordsResponse
-import com.andrew.search.domain.PopularKeyword
 import com.andrew.search.domain.SearchResponse
 import com.andrew.search.error.NotFoundKeywordException
 import com.andrew.search.error.SearchParamException
