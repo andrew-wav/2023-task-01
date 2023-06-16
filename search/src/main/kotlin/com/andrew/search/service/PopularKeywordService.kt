@@ -1,6 +1,6 @@
 package com.andrew.search.service
 
-import com.andrew.search.domain.Keyword
+import com.andrew.search.entity.Keyword
 import com.andrew.search.domain.PopularKeyword
 import com.andrew.search.repository.KeywordRepository
 import org.springframework.stereotype.Service
@@ -30,9 +30,9 @@ class PopularKeywordServiceImpl(
         }
     }
 
-    override fun getPopularKeywords(): List<PopularKeyword> {
-        val keywords: List<Keyword> = keywordRepository.findTop10ByCountDesc()
-        return keywords.map { convertToPopularKeyword(it) }
+    override fun getPopularKeywords(): List<PopularKeyword>? {
+        val keywords: List<Keyword>? = keywordRepository.findTop10ByCountDesc()
+        return keywords?.map { convertToPopularKeyword(it) }
     }
 
     fun convertToPopularKeyword(keyword: Keyword): PopularKeyword {

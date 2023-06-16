@@ -1,6 +1,7 @@
 package com.andrew.search.service
 
 import com.andrew.search.domain.KakaoBlogResponse
+import com.andrew.search.domain.NaverBlogResponse
 import com.andrew.search.domain.PopularKeyword
 import org.hibernate.internal.util.collections.CollectionHelper.listOf
 import org.springframework.beans.factory.annotation.Value
@@ -34,6 +35,30 @@ class BlogSearchApi {
         val requestEntity = org.springframework.http.RequestEntity<Any>(headers, HttpMethod.GET, uri)
         val restTemplate = RestTemplate()
         return restTemplate.exchange(requestEntity, KakaoBlogResponse::class.java)
+    }
+
+    fun searchNaverBlogs(keyword: String, sort: String, page: Int, size: Int): ResponseEntity<NaverBlogResponse> {
+
+        // TODO: naver의 결과를 공통 response에 맞게 설정필요
+
+        val sorting : String = if (sort == "accuracy") "sim" else "date"
+        val apiUrl = "https://openapi.naver.com/v1/search/blog.json"
+        val uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
+            .queryParam("query", keyword)
+            .queryParam("sort", sorting)
+            .queryParam("start", page * size)
+            .queryParam("display", size)
+            .build()
+            .toUri()
+
+        val headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+        headers.set("X-Naver-Client-Id", "client id")
+        headers.set("X-Naver-Client-Secret", "client secret")
+
+        val requestEntity = org.springframework.http.RequestEntity<Any>(headers, HttpMethod.GET, uri)
+        val restTemplate = RestTemplate()
+        return restTemplate.exchange(requestEntity, NaverBlogResponse::class.java)
     }
 
 }

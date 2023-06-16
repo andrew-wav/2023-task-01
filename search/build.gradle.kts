@@ -24,10 +24,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	runtimeOnly("com.h2database:h2")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-configuration-processor:3.1.0")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.30")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.21")
+
+
+	runtimeOnly("com.h2database:h2")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {

@@ -16,8 +16,8 @@ spring:
 
 logging:
   level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: ERROR
+    org.hibernate.type.descriptor.sql.BasicBinder: ERROR
 
 config:
   api:

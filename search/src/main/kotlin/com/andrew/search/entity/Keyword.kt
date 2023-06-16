@@ -1,4 +1,4 @@
-package com.andrew.search.domain
+package com.andrew.search.entity
 
 import jakarta.persistence.*
 
@@ -10,4 +10,7 @@ class Keyword {
     var keyword: String? = null
 
     var count: Long? = 0
+
+    @Version
+    var version: Long? = null
 }

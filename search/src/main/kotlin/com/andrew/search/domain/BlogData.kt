@@ -19,3 +19,11 @@ data class Meta (
     val pageable_count: Int,
     val is_end: Boolean,
 )
+
+data class NaverBlogResponse(
+    val res: NaverResponse,
+)
+
+data class NaverResponse(
+    val channel : String
+)
