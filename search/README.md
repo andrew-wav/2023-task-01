@@ -8,7 +8,7 @@
 - 키워드를 통해 블로그를 검색할 수 있어야 합니다.
 - 검색 결과에서 Sorting(정확도순, 최신순) 기능을 지원해야 합니다.
 - 검색 결과는 Pagination 형태로 제공해야 합니다.
-- 검색 소스는 카카오 API의 키워드로 블로그 검색(https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-blog)을 활용합니다.
+- 검색 소스는 카카오 API의 키워드로 블로그 [검색](https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-blog) 을 활용합니다.
 - 추후 카카오 API 이외에 새로운 검색 소스가 추가될 수 있음을 고려해야 합니다.
 
 ### 1.2. 인기 검색어 목록
@@ -24,28 +24,29 @@
 
 ## 3. Request & Response
 
-### 3.1 응답 형식
+### 3.1 응답 형식 및 예시
 - code : 응답코드
 - status : 응답코드에 대한 상태
 - error : 오류에 대한 상세 설명 (optional)
-- documents or keywords : 요청한 데이터
+- documents 또는 keywords : 요청한 데이터
 ```json
 {
     "code": 200,
     "status": "OK",
     "error": null,
-    "documents" or "keywords": ..
+    "documents": {},
+    "keywords": {}
 }
 ```
 
 ### 3.2 응답 코드
 
-| 구분 | code | status       | description            |
-| --- |------|--------------|------------------------|
-| 성공 | 200  | OK           | 성공                     |
-| 성공 | 204  | NO_CONTENT   | data의 내용이 아무것도 없는 상태   |
-| 실패 | 400  | BAD_REQUEST  | query에 아무값도 넣지 않은경우 발생 |
-| 실패 | 500  | INTERNAL_SERVER_ERROR  | 서버에서 에러 발생             |
+| 구분 | code | status       | description                                       |
+| --- |------|--------------|---------------------------------------------------|
+| 성공 | 200  | OK           | 성공                                                |
+| 성공 | 204  | NO_CONTENT   | 인기 검색어 요청시 data의 내용이 아무것도 없는 상태                   |
+| 실패 | 400  | BAD_REQUEST  | 블로그 검색 요청시 클라이언트 파라미터 오류시 발생 |
+| 실패 | 500  | INTERNAL_SERVER_ERROR  | 서버에서 에러 발생                                        |
 
 ## 4. 블로그 검색 API
 

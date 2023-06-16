@@ -25,6 +25,12 @@ class SearchController {
     ): SearchResponse {
         if(keyword == "" || keyword == null)
             throw SearchParamException("query is requred")
+        if(sort != "accuracy" && sort != "recency")
+            throw SearchParamException("sort is not accuracy or recency")
+        if(page < 1 || page > 50)
+            throw SearchParamException("page range is 1 ~ 50")
+        if(size < 1 || size > 50)
+            throw SearchParamException("size range is 1 ~ 50")
         return SearchResponse(
             documents = searchService.searchBlogs(keyword, sort, page, size),
             status = HttpStatus.OK.name,

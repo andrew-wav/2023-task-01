@@ -22,7 +22,7 @@ class SearchControllerTest {
         val size = 10
 
         mockMvc.perform(
-            MockMvcRequestBuilders.get("/api/search")
+            MockMvcRequestBuilders.get("/v1/search")
                 .param("query", keyword)
                 .param("sort", sort)
                 .param("page", page.toString())
@@ -38,7 +38,64 @@ class SearchControllerTest {
         val size = 10
 
         mockMvc.perform(
-            MockMvcRequestBuilders.get("/api/search")
+            MockMvcRequestBuilders.get("/v1/search")
+                .param("sort", sort)
+                .param("page", page.toString())
+                .param("size", size.toString())
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk)
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.code").value(400))
+    }
+
+    @Test
+    fun searchBlogSortFailTest() {
+        val keyword = "example"
+        val sort = "test"
+        val page = 1
+        val size = 10
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("/v1/search")
+                .param("query", keyword)
+                .param("sort", sort)
+                .param("page", page.toString())
+                .param("size", size.toString())
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk)
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.code").value(400))
+    }
+
+    @Test
+    fun searchBlogPageFailTest() {
+        val keyword = "example"
+        val sort = "accuracy"
+        val page = 100
+        val size = 10
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("/v1/search")
+                .param("query", keyword)
+                .param("sort", sort)
+                .param("page", page.toString())
+                .param("size", size.toString())
+                .accept(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk)
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.code").value(400))
+    }
+
+    @Test
+    fun searchBlogSizeFailTest() {
+        val keyword = "example"
+        val sort = "accuracy"
+        val page = 1
+        val size = 100
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("/v1/search")
+                .param("query", keyword)
                 .param("sort", sort)
                 .param("page", page.toString())
                 .param("size", size.toString())
@@ -52,7 +109,7 @@ class SearchControllerTest {
     fun getPopularKeywordsTest() {
 
         mockMvc.perform(
-            MockMvcRequestBuilders.get("/api/popular")
+            MockMvcRequestBuilders.get("/v1/popular")
                 .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk)
     }
