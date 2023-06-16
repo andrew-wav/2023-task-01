@@ -26,6 +26,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-configuration-processor:3.1.0")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.21")
+	implementation("org.springframework.retry:spring-retry:1.3.1")
 
 
 	runtimeOnly("com.h2database:h2")

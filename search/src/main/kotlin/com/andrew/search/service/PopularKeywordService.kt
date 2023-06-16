@@ -18,15 +18,19 @@ class PopularKeywordServiceImpl(
 
     @Transactional
     override fun incrementCount(keyword: String) {
-        val existingKeyword = keywordRepository.findByKeyword(keyword)
-        if (existingKeyword != null) {
-            existingKeyword.count = existingKeyword.count?.plus(1)
-            keywordRepository.save(existingKeyword)
-        } else {
-            val newKeyword = Keyword()
-            newKeyword.keyword = keyword
-            newKeyword.count = 1
-            keywordRepository.save(newKeyword)
+        try {
+            val existingKeyword = keywordRepository.findByKeyword(keyword)
+            if (existingKeyword != null) {
+                existingKeyword.count = existingKeyword.count?.plus(1)
+                keywordRepository.save(existingKeyword)
+            } else {
+                val newKeyword = Keyword()
+                newKeyword.keyword = keyword
+                newKeyword.count = 1
+                keywordRepository.save(newKeyword)
+            }
+        } catch (e : Exception) {
+            throw Exception(e.message)
         }
     }
 

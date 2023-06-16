@@ -30,11 +30,13 @@ class SearchController {
             throw SearchParamException("page range is 1 ~ 50")
         if(size < 1 || size > 50)
             throw SearchParamException("size range is 1 ~ 50")
-        return SearchResponse(
+        val res = SearchResponse(
             documents = searchService.searchBlogs(keyword, sort, page, size),
             status = HttpStatus.OK.name,
             code = HttpStatus.OK.value()
         )
+        searchService.incrementCount(keyword)
+        return res
     }
 
     @GetMapping("/popular")

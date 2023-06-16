@@ -10,7 +10,4 @@ class Keyword {
     var keyword: String? = null
 
     var count: Long? = 0
-
-    @Version
-    var version: Long? = null
 }

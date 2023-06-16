@@ -54,6 +54,9 @@
 
 - METHOD : GET
 - PATH : /v1/search
+```bash
+  curl -X GET "http://localhost:8080/v1/search?query=test&sort=accuracy&page=1&size=3"
+```
 
 ### 4.1 블로그 검색 요청
 
@@ -104,7 +107,9 @@
 
 - METHOD : GET
 - PATH : /v1/popular
-
+```bash
+  curl -X GET "http://localhost:8080/v1/popular"
+```
 ### 5.1 인기 검색어 요청
 
 ### 5.2 블로그 검색 응답
