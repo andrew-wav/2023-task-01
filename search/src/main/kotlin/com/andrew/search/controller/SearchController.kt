@@ -35,7 +35,11 @@ class SearchController {
             status = HttpStatus.OK.name,
             code = HttpStatus.OK.value()
         )
-        searchService.incrementCount(keyword)
+        try {
+            searchService.incrementCount(keyword)
+        } catch (e : Exception) {
+            throw InternalError("database update error")
+        }
         return res
     }
 

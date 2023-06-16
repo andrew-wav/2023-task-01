@@ -1,10 +1,8 @@
 package com.andrew.search.service
 
 import com.andrew.search.domain.Document
-import com.andrew.search.domain.KakaoBlogResponse
 import com.andrew.search.domain.PopularKeyword
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.retry.annotation.Backoff
 import org.springframework.retry.annotation.Retryable
 import org.springframework.stereotype.Service

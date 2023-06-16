@@ -1,7 +1,18 @@
 # Investment
 
-## 0. jar 다운로드
+## 0. jar 다운로드 및 실행
 [search-1.0.0-andrew.wav.jar 다운로드 링크](./search-1.0.0-andrew.wav.jar)
+```bash
+jar 실행
+cd scripts
+./start.sh
+```
+```bash
+다른 터미널에서 실행
+cd scripts
+./test.sh
+./multi.sh {{n}}
+```
 
 ## 1 기능요구사항
 ### 1.1 블로그 검색
@@ -20,7 +31,14 @@
 
 1. 사용자가 검색한 keyword의 count를 DB에 저장합니다.
 2. Keyword 조회는 unique Column을 사용하여 string에 대한 자동 인덱스 추가합니다.
-3. exception은 handler로 한곳에서처리, 각 응답마다 알맞게 http status를 내려줍니다..
+3. exception은 handler로 한곳에서처리, 각 응답마다 알맞게 http status를 내려줍니다.
+4. 동시성 처리는 비관적락과 낙관적락을 비교해보고 낙관적락을 적용했으며, 실패시 3회 retry 함으로 최대한 count를 맞춰줍니다.
+
+### 2.1 동시성 처리를 위한 추가 구현 필요
+추가로 동시성 처리를 더 적용하기 위해서는 아래와 같은 작업을 할 수 있습니다.
+1. Keyword의 문자열 기반 샤딩 적용 - 샤딩 방법엔 해시샤딩, 범위샤딩, 접두사 샤딩 등을 적용할 수 있습니다.
+2. Redis를 활용한 count 계산 - 데이터베이스에 직접 조회하는것보다 인메모리 Redis를 활용하여 atomic한 계산을 더 빠르게 진행할 수 있습니다.
+
 
 ## 3. Request & Response
 

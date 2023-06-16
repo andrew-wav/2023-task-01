@@ -10,4 +10,8 @@ class Keyword {
     var keyword: String? = null
 
     var count: Long? = 0
+
+    // 낙관적 락
+    @Version
+    var version: Long? = 0
 }
