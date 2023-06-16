@@ -39,8 +39,6 @@ class BlogSearchApi {
 
     fun searchNaverBlogs(keyword: String, sort: String, page: Int, size: Int): ResponseEntity<NaverBlogResponse> {
 
-        // TODO: naver의 결과를 공통 response에 맞게 설정필요
-
         val sorting : String = if (sort == "accuracy") "sim" else "date"
         val apiUrl = "https://openapi.naver.com/v1/search/blog.json"
         val uri = UriComponentsBuilder.fromHttpUrl(apiUrl)
@@ -53,6 +51,8 @@ class BlogSearchApi {
 
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
+
+        // TODO: naver API 클라이언트키 등록 필요
         headers.set("X-Naver-Client-Id", "client id")
         headers.set("X-Naver-Client-Secret", "client secret")
 

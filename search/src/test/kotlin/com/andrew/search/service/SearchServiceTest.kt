@@ -1,26 +1,15 @@
 import com.andrew.search.SearchApplication
-import com.andrew.search.domain.Document
-import com.andrew.search.domain.KakaoBlogResponse
-import com.andrew.search.domain.Meta
-import com.andrew.search.service.BlogSearchApi
 import com.andrew.search.service.PopularKeywordService
 import com.andrew.search.service.SearchServiceImpl
-import org.hibernate.internal.util.collections.CollectionHelper.listOf
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.ResponseEntity
 
 @SpringBootTest(classes = [SearchApplication::class])
 class SearchServiceImplTest {
-
-    @Mock
-    private lateinit var blogSearchApi: BlogSearchApi
 
     @Autowired
     private lateinit var popularKeywordService: PopularKeywordService
